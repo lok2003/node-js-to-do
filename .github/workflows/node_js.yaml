@@ -63,6 +63,12 @@ jobs:
         with:
           name: coverage-report-${{ matrix.node }}
           path: coverage/
+
+      - name: Create App Artifact
+        run: |
+          zip -r nodejs-app.zip . \
+          -x "node_modules/*" \
+          -x ".git/*"
       - name: Create App Artifact
         uses: actions/upload-artifact@v4
         with:
