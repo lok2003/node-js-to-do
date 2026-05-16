@@ -21,18 +21,24 @@ jobs:
       - name: run Test
         run: npm test
 
+      # - name: Generate Coverage
+      #   run: npx nyc npm test
       - name: Generate Coverage
-        run: npx nyc npm test
+        run: |
+          npx nyc \
+          --report=lcov \
+          --reporter=text \
+          npm test
       - name: Check Coverage Files
         run: |
          ls
          ls coverage
          cat coverage/lcov.info
-      
+
       - name: SonarQube 
         run: |
          npx sonar-scanner \
-         -Dsonar.projectKey=${{ vars.ProjectKey }} \
+         -Dsonar.projectKey=${{ vars.PROJECT_NAME }} \
          -Dsonar.organization=${{ vars.ORG_NAME }} \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
