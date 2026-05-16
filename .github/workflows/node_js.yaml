@@ -23,6 +23,11 @@ jobs:
 
       - name: Generate Coverage
         run: npx nyc npm test
+      - name: Check Coverage Files
+        run: |
+         ls
+         ls coverage
+         cat coverage/lcov.info
       
       - name: SonarQube 
         run: |
