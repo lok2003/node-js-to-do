@@ -38,7 +38,7 @@ jobs:
       - name: SonarQube 
         run: |
          npx sonar-scanner \
-         -Dsonar.projectKey=${{ vars.PROJECT_NAME }} \
+         -Dsonar.projectKey=${{ vars.PROJECT_KEY }} \
          -Dsonar.organization=${{ vars.ORG_NAME }} \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
