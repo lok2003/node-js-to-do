@@ -24,3 +24,12 @@ jobs:
       - name: Generate Coverage
         run: npx nyc npm test
       
+      - name: SonarQube 
+        run: |
+         npx sonar-scanning \
+         -Dsonar.ProjectKey=${{ vars.ProjectKey }} \
+         -Dsonar.organization=${{ vars.ORG_NAME }} \
+         -Dsonar.host.url=https://sonarcloud.io \
+         -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+        env:
+          SONAR_TOKEN: ${{ secrets.NODE_TO_DO }}
